@@ -1,3 +1,6 @@
+/* IMPORTANT: Ensure your vite.config.js has base: "/Resqnett/" 
+  for this to work on GitHub Pages.
+*/
 import React, { useState } from 'react';
 import './App.css';
 import { 
@@ -11,32 +14,24 @@ import {
   Stethoscope 
 } from 'lucide-react';
 
-// --- MAIN COMPONENT ---
 const App = () => {
-  // State Variables
   const [showStartup, setShowStartup] = useState(true);
   const [location, setLocation] = useState("Locating...");
   const [selectedCity, setSelectedCity] = useState("bokaro");
 
-  // --- ACTIONS ---
-
-  // 1. Grant Location Logic
   const enableLocation = () => {
     setLocation("Detecting...");
-    // Simulating a delay for realism
     setTimeout(() => {
       setLocation("Bokaro Steel City, JH");
       setShowStartup(false);
     }, 1500);
   };
 
-  // 2. Skip Logic
   const skipStartup = () => {
     setLocation("Location Disabled");
     setShowStartup(false);
   };
 
-  // 3. SOS Logic
   const handleSOS = () => {
     alert("CRITICAL ALERT: Initiating Emergency Call (112) \nSending Coordinates to ResQNet Control Room...");
   };
@@ -44,7 +39,7 @@ const App = () => {
   return (
     <div className="app-wrapper">
       
-      {/* --- STARTUP OVERLAY --- */}
+      {/* STARTUP OVERLAY */}
       {showStartup && (
         <div className="startup-overlay fade-in">
           <div className="startup-icon">
@@ -63,11 +58,10 @@ const App = () => {
         </div>
       )}
 
-      {/* --- NAVBAR --- */}
+      {/* NAVBAR */}
       <nav className="navbar slide-down">
         <div className="container nav-wrapper">
           <div className="brand">
-            {/* The R Logo */}
             <div className="design-r-logo">R</div>
             <span>ResQNet</span>
           </div>
@@ -81,11 +75,10 @@ const App = () => {
         </div>
       </nav>
 
-      {/* --- HERO SECTION --- */}
+      {/* HERO SECTION */}
       <section className="hero-section">
         <div className="container hero-grid">
           
-          {/* Left Side: Content */}
           <div className="hero-content fade-in-up">
             <div className="badge-status">
               <div className="status-dot"></div>
@@ -100,7 +93,6 @@ const App = () => {
               AI-powered rapid response network connecting you to the nearest emergency services, hospitals, and blood banks instantly.
             </p>
 
-            {/* Location Card */}
             <div className="location-card">
               <div className="card-header">
                 <MapPin size={20} />
@@ -140,7 +132,6 @@ const App = () => {
             </div>
           </div>
 
-          {/* Right Side: SOS Button */}
           <div className="hero-action fade-in-up">
             <div className="sos-wrapper">
               <div className="pulse-ring"></div>
@@ -156,7 +147,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* --- SERVICES GRID --- */}
+      {/* SERVICES GRID */}
       <section id="services" className="features-section">
         <div className="container">
           <div className="section-header">
@@ -165,52 +156,23 @@ const App = () => {
           </div>
 
           <div className="grid-wrapper">
-            <FeatureCard 
-              icon={<Ambulance size={28} />} 
-              color="blue" 
-              title="Medical" 
-              desc="Ambulance & Paramedics" 
-            />
-            <FeatureCard 
-              icon={<Flame size={28} />} 
-              color="orange" 
-              title="Fire Brigade" 
-              desc="Fire & Rescue Team" 
-            />
-            <FeatureCard 
-              icon={<ShieldAlert size={28} />} 
-              color="purple" 
-              title="Police" 
-              desc="Local Law Enforcement" 
-            />
-            <FeatureCard 
-              icon={<HeartPulse size={28} />} 
-              color="red" 
-              title="Blood Bank" 
-              desc="Urgent Blood Request" 
-            />
-            <FeatureCard 
-              icon={<Stethoscope size={28} />} 
-              color="green" 
-              title="Doctor AI" 
-              desc="Virtual Consultation" 
-              isLive={true}
-            />
+            <FeatureCard icon={<Ambulance size={28} />} color="blue" title="Medical" desc="Ambulance & Paramedics" />
+            <FeatureCard icon={<Flame size={28} />} color="orange" title="Fire Brigade" desc="Fire & Rescue Team" />
+            <FeatureCard icon={<ShieldAlert size={28} />} color="purple" title="Police" desc="Local Law Enforcement" />
+            <FeatureCard icon={<HeartPulse size={28} />} color="red" title="Blood Bank" desc="Urgent Blood Request" />
+            <FeatureCard icon={<Stethoscope size={28} />} color="green" title="Doctor AI" desc="Virtual Consultation" isLive={true} />
           </div>
         </div>
       </section>
 
-      {/* --- FOOTER --- */}
       <footer className="brand-footer">
         <h2>Res<span>●</span>Q<span>●</span>Net</h2>
         <p>© 2025 Team ResQNet. All rights reserved.</p>
       </footer>
-
     </div>
   );
 };
 
-// --- HELPER COMPONENT: FEATURE CARD ---
 const FeatureCard = ({ icon, color, title, desc, isLive }) => {
   return (
     <div className={`feature-card ${isLive ? 'active-card' : ''}`}>
